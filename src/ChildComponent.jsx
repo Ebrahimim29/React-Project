@@ -1,6 +1,6 @@
 // import PropTypes from "prop-types";
 
-const ChildComponent = ({text})=>{
+const ChildComponent = ({text , children})=>{
 
     console.log("Chil Component");
     
@@ -9,6 +9,7 @@ const ChildComponent = ({text})=>{
         <div>
             <h1>Child Component</h1>
             <p>{text}</p>
+            {children}
         </div>
     );
 };

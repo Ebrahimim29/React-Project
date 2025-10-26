@@ -3,6 +3,7 @@ import ClassComponent from "./ClassComponent"
 import FunctionalComponent from "./FunctionalComponent"
 import Car from "./Car";
 import ChildComponent from "./ChildComponent";
+import UserInfo from "./UserInfo";
 
 const App = () =>{
   
@@ -11,6 +12,13 @@ const App = () =>{
    setText(".هر موقع استیت ها و پراپ ها در یک کامپوننت تغییر پیدا کند، کل المانها بعلاوه کامپوننت فرزندش مجددا ری رندر میشه.یعنی فانکشن کامپوننت ،مجددا فرخوانی میشه😐...");
     console.log(text);    
   };
+
+  const users = [
+    {fname:"Hassan Jalili",age:23,email:"hassan@gmail.com"},
+    {fname:"Kami khosravi",age:32,email:"Kami@yahoo.com"},
+    {fname:"Kasra imani",age:76,email:"kasra@yahoo.com"},
+    {fname:"siamk hase",age:54,email:"siamak@gmail.com"},
+  ];
 
   return (
     <Fragment>
@@ -23,6 +31,16 @@ const App = () =>{
       {/* State */}
       <button onClick={changeText}>Click Me</button>
       <ChildComponent text={text}/>
+        <p>Children</p>
+        <p>Children: زمانی تگ باز و بسته استفاده می کنیم که بخواهیم یک چیلدرن ارسال کنیم </p>
+        <p>Children: داخلش هر چیزی می توانیم بنویسیم</p>
+      <ChildComponent/>
+
+      <div>
+        {users.map((user) => (
+          <UserInfo key={user.fname} fname={user.fname} age={user.age} email={user.email}/>
+        ))}
+      </div>
     </Fragment>
 
   )
