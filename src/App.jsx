@@ -13,12 +13,19 @@ const App = () =>{
     console.log(text);    
   };
 
-  const users = [
+  const initialUsers = [
     {fname:"Hassan Jalili",age:23,email:"hassan@gmail.com"},
     {fname:"Kami khosravi",age:32,email:"Kami@yahoo.com"},
     {fname:"Kasra imani",age:76,email:"kasra@yahoo.com"},
     {fname:"siamk hase",age:54,email:"siamak@gmail.com"},
   ];
+
+  const[users,setUsers] = useState(initialUsers);
+
+  const handleDelete = (fname) => {
+    const newUsers = users.filter((user) => user.fname !== fname);
+    setUsers(newUsers)
+  }
 
   return (
     <Fragment>
@@ -38,7 +45,10 @@ const App = () =>{
 
       <div>
         {users.map((user) => (
-          <UserInfo key={user.fname} fname={user.fname} age={user.age} email={user.email}/>
+          // <UserInfo key={user.fname} fname={user.fname} age={user.age} email={user.email}/>
+
+          //Props Spreading: {...spread operator}
+          <UserInfo key={user.fname} {...user} handleDelete={handleDelete}/>
         ))}
       </div>
     </Fragment>
