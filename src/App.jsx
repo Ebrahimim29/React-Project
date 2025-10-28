@@ -22,9 +22,22 @@ const App = () =>{
 
   const[users,setUsers] = useState(initialUsers);
 
-  const handleDelete = (fname) => {
-    const newUsers = users.filter((user) => user.fname !== fname);
-    setUsers(newUsers)
+  // const handleDelete = (fname) => {
+  //   const newUsers = users.filter((user) => user.fname !== fname);
+  //   setUsers(newUsers)
+  // }
+
+  //Functional Update
+  const handleDelete = (fname) =>{
+    setUsers((prevUsers) =>{
+      const newUsers = prevUsers.filter((user)=>user.fname !== fname);
+      return newUsers;
+    });
+  }
+
+  const setSearch = (char) =>{
+    const newUsers = initialUsers.filter((user)=>user.fname.toLowerCase().includes(char.toLowerCase()));
+    setUsers(newUsers);
   }
 
   return (
@@ -44,11 +57,13 @@ const App = () =>{
       <ChildComponent/>
 
       <div>
+        <input type="text" onChange={(e)=>setSearch(e.target.value)} />
         {users.map((user) => (
           // <UserInfo key={user.fname} fname={user.fname} age={user.age} email={user.email}/>
 
           //Props Spreading: {...spread operator}
           <UserInfo key={user.fname} {...user} handleDelete={handleDelete}/>
+
         ))}
       </div>
     </Fragment>
